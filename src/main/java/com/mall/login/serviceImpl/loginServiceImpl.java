@@ -1,6 +1,5 @@
 package com.mall.login.serviceImpl;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,24 +12,21 @@ import com.mall.login.service.loginService;
 
 @Service("loginService")
 public class loginServiceImpl implements loginService {
-	
+
 	@Autowired
 	private loginMapper loginMapper;
 
-	
 	public Integer memberLogin(Map<String, Object> paramMap) throws Exception {
-		System.err.println("login@:"+paramMap);
+		System.err.println("login@:" + paramMap);
 		System.err.println(loginMapper.memberLogin(paramMap));
 		return loginMapper.memberLogin(paramMap);
 	}
-	
-	public void insertMember(Map<String, Object> paramMap, MultipartHttpServletRequest multi, HttpServletRequest request)
-			throws Exception {
-		System.err.println("$$$$$$$$$:"+paramMap);
+
+	public void insertMember(Map<String, Object> paramMap, MultipartHttpServletRequest multi,
+			HttpServletRequest request) throws Exception {
+		System.err.println("$$$$$$$$$:" + paramMap);
 		loginMapper.insertMember(paramMap);
 		loginMapper.insertMemberHis(paramMap);
 	}
-	
-
 
 }

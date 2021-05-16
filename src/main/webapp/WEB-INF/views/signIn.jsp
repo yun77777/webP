@@ -65,6 +65,8 @@
 						<a href="">Find password</a>
 						<button class="btn btn-primary" onclick="" id="submit" type="button">naver sign in</button>
 						<button class="btn btn-primary" onclick="" id="submit" type="button">kakao sign in</button>
+												<button class="btn btn-primary" onclick="fn_sign_in2()" id="signIn" type="button">Sign In2</button>
+												<button class="btn btn-primary" onclick="fn_sign_in3()" id="signIn" type="submit">Sign In3</button>
 						
 <!-- 						<button class="btn btn-primary" onclick="fn_insert()" id="submit" type="button">submit</button> -->
 					</div>
@@ -127,6 +129,40 @@ function fn_sign_in() {
 		}
 	});
 
+}
+
+function fn_sign_in2() {
+	//var formData = $('#boardForm').serialize();
+	var formData = new FormData($("#boardForm")[0]);
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/user/loginPost.do",
+		type : "post",
+		enctype: 'multipart/form-data',
+		data : formData,
+		processData : false,
+		contentType : false,
+		success : function(result) {
+			alert('result:'+result.result);
+			if(result.result=='success')
+				alert('successfully login');
+			//fn_list();
+		}, // success 
+
+		error : function(xhr, status) {
+			alert(xhr + " : " + status);
+		}
+	});
+
+}
+
+function fn_sign_in3() {
+	//var formData = $('#boardForm').serialize();
+	
+	$('#boardForm').attr({
+		action : '<c:url value="/user/register.do"/>',
+		target : '_self'
+	}).submit();
 }
 
 </script>
